@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 
     return view('posts',[
-        'posts' => Post::latest('published_at')->with('category','user')->get()
+        'posts' => Post::latest('published_at')->with('category','user')->get(),
+        'categories' => Category::all()
     ]);
     
 });
@@ -30,12 +31,14 @@ Route::get('posts/{post:slug}', function (Post $post) {
 });
 Route::get('categories/{category:slug}',function (Category $category){
     return view('posts',[
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'categories' => Category::all()
     ]);
 });
 
 Route::get('users/{user:username}',function (\App\Models\User $user){
     return view('posts',[
-        'posts' => $user->posts
+        'posts' => $user->posts,
+        'categories' => Category::all()
     ]);
 });
