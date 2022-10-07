@@ -21,7 +21,7 @@
                                 >
                                 {{isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories'}}
                                 
-                                <x-down-arrow class="absolute pointer-events-none" style="right: 12px;"/>
+                                <x-icon name="down-arrow" class="absolute pointer-events-none" style="right: 12px;"/>
                             </button>
                         </x-slot>
                         <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
