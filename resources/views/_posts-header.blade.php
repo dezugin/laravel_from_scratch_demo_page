@@ -17,7 +17,6 @@
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button 
-                                @click="show = !show"
                                 class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex"
                                 >
                                 {{isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories'}}
@@ -33,18 +32,11 @@
                                 </svg>
                             </button>
                         </x-slot>
-                        <a href="/" 
-                        class = "block text-left px-3 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white" >
-                        All</a>
-                        @foreach($categories as $category)    
-                            <a href="/categories/{{$category->slug}}" 
-                            class = 
-                            "block text-left px-3 text-sm leading-6
-                                hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white
-                                {{isset($currentCategory)&&$currentCategory->id == $category->id ? 'bg-blue-500 text-white' : ''}} ">
-                            {{ucwords($category->name)}}</a>
-                        @endforeach
-                    </x-dropdown>
+                        <x-dropdown-item href="/">All</x-dropdown-item>
+                            @foreach($categories as $category)  
+                                <x-dropdown-item href="/categories/{{$category->slug}}">{{ucwords($category->name)}}</x-dropdown-item>
+                            @endforeach
+                        </x-dropdown>
                 </div>
 
                 <!-- Other Filters -->
