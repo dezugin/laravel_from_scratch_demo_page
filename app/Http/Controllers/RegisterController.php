@@ -18,6 +18,8 @@ class RegisterController extends Controller
             'email'=>'required|email|max:255',
             'password'=>'required|min:12'
         ]);
+
+
         User::create($attributes);
         return redirect ('/');
     }
