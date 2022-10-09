@@ -14,18 +14,14 @@ class SessionsController extends Controller
             'email'=>'required|email',
             'password'=>'required'
         ]);
-        if(auth()->attempt($attributes)){
-            session()->regenerate();
-            return redirect('/')->with('success','Welcome Bach');
-        }
-
-    //     throw ValidationException::withMessages([
-    //         'email' => 'Your provided credentials could not be Verified'
-    //     ]);
-        else{   return back()
+        if(! auth()->attempt($attributes)){
+            return back()
               ->withInput()
               ->withErrors(['email'=>'Your provided credentials could not be verified']);
-            }
+            
+        }
+        session()->regenerate();
+        return redirect('/')->with('success','Welcome Bach');
 
     }
     public function destroy(){
